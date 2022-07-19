@@ -22,6 +22,7 @@ import (
 	"github.com/project-alvarium/alvarium-sdk-go/internal/annotators"
 	httpAnnotators "github.com/project-alvarium/alvarium-sdk-go/internal/annotators/http"
 	handler "github.com/project-alvarium/alvarium-sdk-go/internal/annotators/http/handler"
+	hedera "github.com/project-alvarium/alvarium-sdk-go/internal/hedera"
 	"github.com/project-alvarium/alvarium-sdk-go/internal/iota"
 	"github.com/project-alvarium/alvarium-sdk-go/internal/mock"
 	"github.com/project-alvarium/alvarium-sdk-go/internal/mqtt"
@@ -51,6 +52,12 @@ func NewStreamProvider(cfg config.StreamInfo, logger logInterface.Logger) (inter
 			return nil, errors.New("invalid cast for MockStream")
 		}
 		return mqtt.NewMqttPublisher(info, logger), nil
+	case contracts.HederaStream:
+		info, ok := cfg.Config.(config.HederaConfig)
+		if !ok {
+			return nil, errors.New("invalid cast for HederaStream")
+		}
+		return hedera.NewHederaPublisher(info, logger)
 	default:
 		return nil, fmt.Errorf("unrecognized config Type value %s", cfg.Type)
 	}

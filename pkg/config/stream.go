@@ -16,6 +16,7 @@ package config
 import (
 	"encoding/json"
 	"fmt"
+
 	"github.com/project-alvarium/alvarium-sdk-go/pkg/contracts"
 )
 
@@ -65,6 +66,19 @@ func (s *StreamInfo) UnmarshalJSON(data []byte) (err error) {
 		}
 		s.Type = m.Type
 		s.Config = m.Config
+	} else if a.Type == contracts.HederaStream {
+		type HederaAlias struct {
+			Type   contracts.StreamType `json:"type,omitempty"`
+			Config HederaConfig         `json:"config,omitempty"`
+		}
+
+		h := HederaAlias{}
+		//Error with unmarshaling
+		if err = json.Unmarshal(data, &h); err != nil {
+			return err
+		}
+		s.Type = h.Type
+		s.Config = h.Config
 	} else {
 		return fmt.Errorf("unhandled StreamInfo.Type value %s", a.Type)
 	}
@@ -88,6 +102,15 @@ type MqttConfig struct {
 	Provider  ServiceInfo `json:"provider,omitempty"`
 	Cleanness bool        `json:"cleanness,omitempty"`
 	Topics    []string    `json:"topics,omitempty"`
+}
+
+// configuartion required to init a Hedera client and connect to the consensus nodes
+type HederaConfig struct {
+	NetType    contracts.NetType `json:"netType,omitempty"`
+	ContractId string            `json:"contractId,omitempty"`
+	AccountId  string            `json:"accountId,omitempty"`
+	PrivateKey string            `json:"privateKey,omitempty"` // TODO(Karim Elghamry): handle more securely
+	Topics     []string          `json:"topics,omitempty"`
 }
 
 // ServiceInfo describes a service endpoint that the deployed service is a client of. Right now, this is implicitly
