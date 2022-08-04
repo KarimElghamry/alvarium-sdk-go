@@ -71,13 +71,55 @@ func (p *HederaPublisher) Publish(msg message.PublishWrapper) error {
 		}
 
 		// submit message to consensus service
-		_, err = hedera.NewTopicMessageSubmitTransaction().
+		transaction, err := hedera.NewTopicMessageSubmitTransaction().
 			SetMessage(b).
 			SetTopicID(topicId).
 			Execute(p.hederaClient)
 		if err != nil {
 			return err
 		}
+
+		contractId, err := hedera.ContractIDFromString(p.cfg.ContractId)
+		if err != nil {
+			return err
+		}
+		publishParams := hedera.NewContractFunctionParameters().
+			AddString(transaction.TransactionID.String())
+
+		// call the `publish` smart contract function which will record the
+		// previous transaction's ID in the ledger to be used to calculate
+		// the fees in bulk.
+		//
+		// A transaction is used here instead of a query because queries
+		// usually return a `BUSY` error which is due to high traffic when
+		// using the testnet or previewnet
+		tr, err := hedera.NewContractExecuteTransaction().
+			SetContractID(contractId).
+			SetGas(1000000).
+			SetFunction("publish", publishParams).
+			Execute(p.hederaClient)
+
+		// At the moment, the is no cleaning up if the annotation is published to
+		// the consensus service but the smart contract call fails
+		if err != nil {
+			return err
+		}
+
+		// Confirmation that the transaction was successful
+		receipt, err := tr.GetReceipt(p.hederaClient)
+		if err != nil {
+			return err
+		}
+
+		if receipt.Status != hedera.StatusSuccess {
+			errMsg := fmt.Sprintf(
+				"Smart contract 'publish' method invocation failed with status: %s",
+				receipt.Status,
+			)
+			p.logger.Error(errMsg)
+			return errors.New(errMsg)
+		}
+
 	}
 
 	return nil
