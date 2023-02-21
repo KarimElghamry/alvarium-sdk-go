@@ -66,15 +66,16 @@ func (t StreamType) Validate() bool {
 type AnnotationType string
 
 const (
-	AnnotationPKI     AnnotationType = "pki"
-	AnnotationPKIHttp AnnotationType = "pki-http"
-	AnnotationSource  AnnotationType = "src"
-	AnnotationTLS     AnnotationType = "tls"
-	AnnotationTPM     AnnotationType = "tpm"
+	AnnotationPKI       AnnotationType = "pki"
+	AnnotationPKIHttp   AnnotationType = "pki-http"
+	AnnotationSource    AnnotationType = "src"
+	AnnotationTLS       AnnotationType = "tls"
+	AnnotationTPM       AnnotationType = "tpm"
+	AnnotationRemoteTPM AnnotationType = "remote-tpm"
 )
 
 func (t AnnotationType) Validate() bool {
-	if t == AnnotationPKI || t == AnnotationTLS || t == AnnotationTPM || t == AnnotationSource {
+	if t == AnnotationPKI || t == AnnotationTLS || t == AnnotationTPM || t == AnnotationSource || t == AnnotationRemoteTPM {
 		return true
 	}
 	return false

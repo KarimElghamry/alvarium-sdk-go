@@ -69,6 +69,8 @@ func NewAnnotator(kind contracts.AnnotationType, cfg config.SdkInfo) (interfaces
 		a = httpAnnotators.NewHttpPkiAnnotator(cfg)
 	case contracts.AnnotationTLS:
 		a = annotators.NewTlsAnnotator(cfg)
+	case contracts.AnnotationRemoteTPM:
+		a = annotators.NewRemoteTpmAnnotator(cfg)
 	default:
 		return nil, fmt.Errorf("unrecognized AnnotationType %s", kind)
 	}
