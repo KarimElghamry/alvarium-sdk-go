@@ -15,10 +15,11 @@ package annotators
 
 import (
 	"context"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/config"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/contracts"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/interfaces"
 	"os"
+
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/config"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/contracts"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/interfaces"
 )
 
 // SourceAnnotator is used to provide lineage from one version of data to another as the result of a change or transformation.

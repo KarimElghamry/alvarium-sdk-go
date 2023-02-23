@@ -1,4 +1,4 @@
-module github.com/project-alvarium/alvarium-sdk-go
+module github.com/KarimElghamry/alvarium-sdk-go
 
 go 1.16
 

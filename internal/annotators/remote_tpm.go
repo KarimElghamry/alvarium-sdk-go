@@ -17,10 +17,10 @@ import (
 	"context"
 	"os"
 
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/config"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/contracts"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/interfaces"
 	"github.com/google/go-tpm/tpm2"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/config"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/contracts"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/interfaces"
 )
 
 // annotator to check on the TPM attestation quote coming from a remote device

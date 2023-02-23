@@ -15,9 +15,10 @@ package config
 
 import (
 	"encoding/json"
-	"github.com/project-alvarium/alvarium-sdk-go/test"
 	"io/ioutil"
 	"testing"
+
+	"github.com/KarimElghamry/alvarium-sdk-go/test"
 )
 
 func TestSDKInfo_UnmarshalJSON(t *testing.T) {

@@ -16,15 +16,16 @@ package annotators
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/project-alvarium/alvarium-sdk-go/internal/hashprovider"
-	"github.com/project-alvarium/alvarium-sdk-go/internal/hashprovider/md5"
-	"github.com/project-alvarium/alvarium-sdk-go/internal/hashprovider/none"
-	"github.com/project-alvarium/alvarium-sdk-go/internal/hashprovider/sha256"
-	"github.com/project-alvarium/alvarium-sdk-go/internal/signprovider"
-	"github.com/project-alvarium/alvarium-sdk-go/internal/signprovider/ed25519"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/config"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/contracts"
 	"io/ioutil"
+
+	"github.com/KarimElghamry/alvarium-sdk-go/internal/hashprovider"
+	"github.com/KarimElghamry/alvarium-sdk-go/internal/hashprovider/md5"
+	"github.com/KarimElghamry/alvarium-sdk-go/internal/hashprovider/none"
+	"github.com/KarimElghamry/alvarium-sdk-go/internal/hashprovider/sha256"
+	"github.com/KarimElghamry/alvarium-sdk-go/internal/signprovider"
+	"github.com/KarimElghamry/alvarium-sdk-go/internal/signprovider/ed25519"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/config"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/contracts"
 )
 
 func DeriveHash(hash contracts.HashType, data []byte) string {

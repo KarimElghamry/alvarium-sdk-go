@@ -3,14 +3,15 @@ package annotators
 import (
 	"context"
 	"encoding/json"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/config"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/contracts"
-	"github.com/project-alvarium/alvarium-sdk-go/test"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/config"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/contracts"
+	"github.com/KarimElghamry/alvarium-sdk-go/test"
 )
 
 func TestTlsAnnotator_Base(t *testing.T) {

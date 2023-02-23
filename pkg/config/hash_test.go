@@ -15,9 +15,10 @@ package config
 
 import (
 	"encoding/json"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/contracts"
-	"github.com/project-alvarium/alvarium-sdk-go/test"
 	"testing"
+
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/contracts"
+	"github.com/KarimElghamry/alvarium-sdk-go/test"
 )
 
 func TestHashTypeValues(t *testing.T) {

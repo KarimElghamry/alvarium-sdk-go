@@ -13,7 +13,7 @@
  *******************************************************************************/
 package interfaces
 
-import "github.com/project-alvarium/alvarium-sdk-go/pkg/message"
+import "github.com/KarimElghamry/alvarium-sdk-go/pkg/message"
 
 type StreamProvider interface {
 	Close() error

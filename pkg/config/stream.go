@@ -16,7 +16,8 @@ package config
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/contracts"
+
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/contracts"
 )
 
 // StreamInfo facilitates configuration of a given streaming platform that will receive annotations

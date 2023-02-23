@@ -24,13 +24,13 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/project-alvarium/alvarium-sdk-go/internal/annotators"
-	handler "github.com/project-alvarium/alvarium-sdk-go/internal/annotators/http/handler"
-	"github.com/project-alvarium/alvarium-sdk-go/internal/signprovider"
-	"github.com/project-alvarium/alvarium-sdk-go/internal/signprovider/ed25519"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/config"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/contracts"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/interfaces"
+	"github.com/KarimElghamry/alvarium-sdk-go/internal/annotators"
+	handler "github.com/KarimElghamry/alvarium-sdk-go/internal/annotators/http/handler"
+	"github.com/KarimElghamry/alvarium-sdk-go/internal/signprovider"
+	"github.com/KarimElghamry/alvarium-sdk-go/internal/signprovider/ed25519"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/config"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/contracts"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/interfaces"
 )
 
 // HttpPkiAnnotator is used to validate whether the signature on a given piece of data is valid, both sent in the HTTP message

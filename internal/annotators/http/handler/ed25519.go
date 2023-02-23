@@ -23,9 +23,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/project-alvarium/alvarium-sdk-go/internal/signprovider/ed25519"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/config"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/interfaces"
+	"github.com/KarimElghamry/alvarium-sdk-go/internal/signprovider/ed25519"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/config"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/interfaces"
 )
 
 type requestHandler struct {

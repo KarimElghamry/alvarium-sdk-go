@@ -25,8 +25,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/config"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/contracts"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/config"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/contracts"
 	"github.com/stretchr/testify/assert"
 )
 

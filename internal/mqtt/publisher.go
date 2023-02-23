@@ -16,13 +16,14 @@ package mqtt
 import (
 	"encoding/json"
 	"fmt"
+	"time"
+
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/config"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/interfaces"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/message"
 	MQTT "github.com/eclipse/paho.mqtt.golang"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/config"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/interfaces"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/message"
 	logInterface "github.com/project-alvarium/provider-logging/pkg/interfaces"
 	"github.com/project-alvarium/provider-logging/pkg/logging"
-	"time"
 )
 
 const (

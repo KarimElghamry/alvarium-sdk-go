@@ -17,13 +17,14 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/project-alvarium/alvarium-sdk-go/internal/signprovider"
-	"github.com/project-alvarium/alvarium-sdk-go/internal/signprovider/ed25519"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/config"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/contracts"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/interfaces"
 	"io/ioutil"
 	"os"
+
+	"github.com/KarimElghamry/alvarium-sdk-go/internal/signprovider"
+	"github.com/KarimElghamry/alvarium-sdk-go/internal/signprovider/ed25519"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/config"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/contracts"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/interfaces"
 )
 
 // PkiAnnotator is used to validate whether the signature on a given piece of data is valid

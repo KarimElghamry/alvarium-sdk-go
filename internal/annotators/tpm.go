@@ -15,10 +15,11 @@ package annotators
 
 import (
 	"context"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/config"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/contracts"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/interfaces"
 	"os"
+
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/config"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/contracts"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/interfaces"
 )
 
 // Default path to a TPM 2.0 device (https://wiki.archlinux.org/title/Trusted_Platform_Module)

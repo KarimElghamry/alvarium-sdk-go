@@ -15,11 +15,12 @@ package annotators
 
 import (
 	"encoding/json"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/config"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/contracts"
-	"github.com/project-alvarium/alvarium-sdk-go/test"
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/config"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/contracts"
+	"github.com/KarimElghamry/alvarium-sdk-go/test"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestDeriveHash(t *testing.T) {

@@ -16,7 +16,7 @@ package interfaces
 import (
 	"time"
 
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/config"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/config"
 )
 
 type RequestHandler interface {

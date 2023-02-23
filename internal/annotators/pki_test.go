@@ -16,11 +16,12 @@ package annotators
 import (
 	"context"
 	"encoding/json"
-	"github.com/project-alvarium/alvarium-sdk-go/internal/signprovider/ed25519"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/config"
-	"github.com/project-alvarium/alvarium-sdk-go/test"
 	"io/ioutil"
 	"testing"
+
+	"github.com/KarimElghamry/alvarium-sdk-go/internal/signprovider/ed25519"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/config"
+	"github.com/KarimElghamry/alvarium-sdk-go/test"
 )
 
 func TestPkiAnnotator_Do(t *testing.T) {

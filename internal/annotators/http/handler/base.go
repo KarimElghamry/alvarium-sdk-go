@@ -20,7 +20,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/contracts"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/contracts"
 )
 
 type parseResult struct {
