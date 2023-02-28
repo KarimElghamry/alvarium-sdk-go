@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/KarimElghamry/alvarium-sdk-go/pkg/config"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/contracts"
 	"github.com/KarimElghamry/alvarium-sdk-go/test"
 )
 
@@ -51,7 +52,7 @@ func TestRemoteTpmAnnotator_DO(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			remoteTpm := NewRemoteTpmAnnotator(tt.cfg)
-			annotation, err := remoteTpm.Do(context.Background(), tt.data)
+			annotation, err := remoteTpm.Do(context.WithValue(context.Background(), contracts.DeviceIdKey, "foo"), tt.data)
 			test.CheckError(err, tt.expectedError, tt.name, t)
 			if annotation.IsSatisfied != tt.isSatisfied {
 				t.Errorf("output annotation isSatisfied is: %t. expected value is: %t", annotation.IsSatisfied, tt.isSatisfied)

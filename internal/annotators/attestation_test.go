@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/KarimElghamry/alvarium-sdk-go/pkg/config"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/contracts"
 )
 
 func TestAttestationAnnotation(t *testing.T) {
@@ -32,14 +33,14 @@ func TestAttestationAnnotation(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			attest := NewAttestationAnnotator(cfg)
-			a, err := attest.Do(context.Background(), []byte(tt.data))
+			a, err := attest.Do(context.WithValue(context.Background(), contracts.DeviceIdKey, "foo"), []byte(tt.data))
 			if err != nil {
 				t.Fatalf(err.Error())
 			}
 			if !a.IsSatisfied {
 				t.Error("Attestation Annotation's isSatisfied is not true")
 			}
-			if true { // TODO:(Ali Amin) test correct device id ?
+			if a.DeviceId != "foo" {
 				t.Error("Invalid device id")
 			}
 		})

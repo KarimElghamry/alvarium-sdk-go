@@ -61,6 +61,12 @@ func (a *PkiAnnotator) Do(ctx context.Context, data []byte) (contracts.Annotatio
 	if err != nil {
 		return contracts.Annotation{}, err
 	}
+
+	deviceId, ok := ctx.Value(contracts.DeviceIdKey).(string)
+	if ok {
+		annotation.DeviceId = deviceId
+	}
+
 	annotation.Signature = string(signed)
 	return annotation, nil
 }

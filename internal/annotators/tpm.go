@@ -61,6 +61,11 @@ func (a *TpmAnnotator) Do(ctx context.Context, data []byte) (contracts.Annotatio
 	if err != nil {
 		return contracts.Annotation{}, err
 	}
+
+	deviceId, ok := ctx.Value(contracts.DeviceIdKey).(string)
+	if ok {
+		annotation.DeviceId = deviceId
+	}
 	annotation.Signature = string(sig)
 	return annotation, nil
 }

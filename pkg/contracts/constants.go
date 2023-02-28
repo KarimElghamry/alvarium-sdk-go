@@ -107,3 +107,9 @@ func (d DerivedComponent) Validate() bool {
 	}
 	return false
 }
+
+type ContextKey string
+
+const (
+	DeviceIdKey ContextKey = "deviceId"
+)
