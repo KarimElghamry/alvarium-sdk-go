@@ -15,6 +15,7 @@ package annotators
 
 import (
 	"context"
+	"errors"
 	"os"
 
 	"github.com/KarimElghamry/alvarium-sdk-go/pkg/config"
@@ -39,6 +40,12 @@ func NewRemoteTpmAnnotator(cfg config.SdkInfo) interfaces.Annotator {
 }
 
 func (a *RemoteTpmAnnotator) Do(ctx context.Context, data []byte) (contracts.Annotation, error) {
+
+	deviceId, ok := ctx.Value(contracts.DeviceIdKey).(string)
+	if !ok {
+		return contracts.Annotation{}, errors.New("`deviceId` not found in attestation annotator's context")
+	}
+
 	key := DeriveHash(a.hash, data)
 	hostname, _ := os.Hostname()
 	isSatisfied := validateTpmQuote(data)
@@ -48,6 +55,7 @@ func (a *RemoteTpmAnnotator) Do(ctx context.Context, data []byte) (contracts.Ann
 	if err != nil {
 		return contracts.Annotation{}, err
 	}
+	annotation.DeviceId = deviceId
 	annotation.Signature = string(sig)
 	return annotation, nil
 }

@@ -19,19 +19,18 @@ type AttestationAnnotator struct {
 func NewAttestationAnnotator(cfg config.SdkInfo) interfaces.Annotator {
 	a := AttestationAnnotator{}
 	a.hash = cfg.Hash.Type
-	a.kind = contracts.AnnotationSource
+	a.kind = contracts.AnnotationAttestation
 	a.sign = cfg.Signature
 	return &a
 }
 
 func (a *AttestationAnnotator) Do(ctx context.Context, data []byte) (contracts.Annotation, error) {
-	deviceId, ok := ctx.Value("deviceId").([]byte)
+	deviceId, ok := ctx.Value(contracts.DeviceIdKey).(string)
 	if !ok {
 		return contracts.Annotation{}, errors.New("`deviceId` not found in attestation annotator's context")
 	}
 
-	key := DeriveHash(a.hash, deviceId)
-
+	key := DeriveHash(a.hash, data)
 	hostname, _ := os.Hostname()
 
 	annotation := contracts.NewAnnotation(key, a.hash, hostname, a.kind, true)
@@ -41,6 +40,7 @@ func (a *AttestationAnnotator) Do(ctx context.Context, data []byte) (contracts.A
 		return contracts.Annotation{}, err
 	}
 
+	annotation.DeviceId = deviceId
 	annotation.Signature = string(sig)
 	return annotation, nil
 }

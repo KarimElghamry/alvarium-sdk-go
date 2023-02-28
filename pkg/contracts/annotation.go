@@ -16,14 +16,16 @@ package contracts
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/oklog/ulid/v2"
 	"time"
+
+	"github.com/oklog/ulid/v2"
 )
 
 // Annotation represents an individual criterion of evaluation in regard to a piece of data
 type Annotation struct {
 	Id          ulid.ULID      `json:"id,omitempty"`        // Id should probably be a ULID -- uniquely identifies the annotation itself
 	Key         string         `json:"key,omitempty"`       // Key is the hash value of the data being annotated
+	DeviceId    string         `json:"deviceId,omitempty"`  // DeviceId is the device identifier that the sdk is publishing annotations from
 	Hash        HashType       `json:"hash,omitempty"`      // Hash identifies which algorithm was used to construct the hash
 	Host        string         `json:"host,omitempty"`      // Host is the hostname of the node making the annotation
 	Kind        AnnotationType `json:"kind,omitempty"`      // Kind indicates what kind of annotation this is
@@ -54,6 +56,7 @@ func (a *Annotation) UnmarshalJSON(data []byte) (err error) {
 	type Alias struct {
 		Id          ulid.ULID
 		Key         string
+		Deviceid    string
 		Hash        HashType
 		Host        string
 		Kind        AnnotationType
@@ -76,6 +79,7 @@ func (a *Annotation) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	a.Id = x.Id
+	a.DeviceId = x.Deviceid
 	a.Key = x.Key
 	a.Hash = x.Hash
 	a.Host = x.Host
