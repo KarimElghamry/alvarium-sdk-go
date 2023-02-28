@@ -19,6 +19,21 @@ const (
 	ContentTypeJSON ContentType = "application/json"
 )
 
+type NetType string
+
+const (
+	Mainnet    NetType = "mainnet"
+	Testnet    NetType = "testnet"
+	Previewnet NetType = "previewnet"
+)
+
+func (t NetType) Validate() bool {
+	if t == Mainnet || t == Testnet || t == Previewnet {
+		return true
+	}
+	return false
+}
+
 type HashType string
 
 const (
@@ -54,10 +69,11 @@ const (
 	MockStream    StreamType = "mock"
 	MqttStream    StreamType = "mqtt"
 	PravegaStream StreamType = "pravega" // Currently unsupported but indicating extension point
+	HederaStream  StreamType = "hedera"
 )
 
 func (t StreamType) Validate() bool {
-	if t == IotaStream || t == MockStream || t == MqttStream || t == PravegaStream {
+	if t == IotaStream || t == MockStream || t == MqttStream || t == PravegaStream || t == HederaStream {
 		return true
 	}
 	return false

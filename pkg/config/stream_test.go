@@ -15,9 +15,10 @@ package config
 
 import (
 	"encoding/json"
+	"testing"
+
 	"github.com/project-alvarium/alvarium-sdk-go/pkg/contracts"
 	"github.com/project-alvarium/alvarium-sdk-go/test"
-	"testing"
 )
 
 func TestStreamInfoUnmarshal(t *testing.T) {
@@ -50,6 +51,14 @@ func TestStreamInfoUnmarshal(t *testing.T) {
 		Provider: mqtt,
 	}
 
+	streamHedera := HederaConfig{
+		NetType:    contracts.Testnet,
+		ContractId: "testId",
+		AccountId:  "testId",
+		PrivateKey: "testKey",
+		Topics:     []string{"topic1", "topic2"},
+	}
+
 	pass := StreamInfo{
 		Type:   contracts.IotaStream,
 		Config: stream,
@@ -63,6 +72,11 @@ func TestStreamInfoUnmarshal(t *testing.T) {
 	pass3 := StreamInfo{
 		Type:   contracts.MqttStream,
 		Config: streamMqtt,
+	}
+
+	pass4 := StreamInfo{
+		Type:   contracts.HederaStream,
+		Config: streamHedera,
 	}
 
 	fail := StreamInfo{
@@ -80,6 +94,7 @@ func TestStreamInfoUnmarshal(t *testing.T) {
 	c, _ := json.Marshal(&pass3)
 	d, _ := json.Marshal(&fail)
 	e, _ := json.Marshal(&fail2)
+	f, _ := json.Marshal(&pass4)
 
 	tests := []struct {
 		name        string
@@ -89,6 +104,7 @@ func TestStreamInfoUnmarshal(t *testing.T) {
 		{"valid StreamInfo type #1", a, false},
 		{"valid StreamInfo type #2", b, false},
 		{"valid StreamInfo type #3", c, false},
+		{"valid StreamInfo type #4", f, false},
 		{"invalid StreamInfo type", d, true},
 		{"unhandled StreamInfo type", e, true},
 	}
